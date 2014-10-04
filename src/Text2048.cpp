@@ -1,6 +1,6 @@
 /*
 ==================================================
-        Filename:   Text2048.cpp
+        Filename:   text2048.cpp
 
      Description:   Text-based 2048 game. Please
                     set your terminal to 80 x 25.
@@ -115,7 +115,10 @@ void checkState(int board[][4], int* gameState)
 			if (board[i][j] == 0)
 				(*gameState) = 1;
 			if (board[i][j] == 2048)
+			{
 				(*gameState) = 2;
+				break;
+			}
 		}
 	}
 }
