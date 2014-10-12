@@ -47,30 +47,23 @@
 #define the compilers to be used. CXX is defined by make as g++; CC does not
 #seem to be defined as gcc
 CC       = g++
-WNDRES   = windres
 #---------------------------------------------------------------------------
 #first name the (i)output dir (ii) include dir and (iii) resources dir
 OUTDIR   = bin
 SRCDIR   = src
-RESDIR   = res
 #---------------------------------------------------------------------------
 #name the final exe
-EXENAME  = $(notdir $(CURDIR)).exe
+EXENAME  = application
 #and the source extensions
 SRCEXT   = .cpp
-RESEXT   = .rc
 OBJEXT   = .o
 #---------------------------------------------------------------------------
 #name the source files and compiled objects
 SRC     := $(wildcard $(SRCDIR)/*$(SRCEXT))
 SRCOBJS := $(patsubst $(SRCDIR)/%,$(OUTDIR)/%,$(subst $(SRCEXT),$(OBJEXT),$(SRC)))
 #---------------------------------------------------------------------------
-#name resource scripts and compiled resource objects
-RES     := $(wildcard $(RESDIR)/*$(RESEXT))
-RESOBJS := $(patsubst $(RESDIR)/%,$(OUTDIR)/%,$(subst $(RESEXT),$(OBJEXT),$(RES)))
-#---------------------------------------------------------------------------
 #finally set various flags for compiling, linking or building
-CPPFLAGS = -Wall -c -g -std=c++11
+CPPFLAGS = -Wall -c -g
 #Note that -Wl,--subsystem,windows is synonymous with -mwindows; -Wl is used
 #to ensure that linker switches are passed to the linker when it (ld) is
 #invoked by another program, eg gcc. Both have the effect of building a 
@@ -81,8 +74,8 @@ LIBS     =
 #called/invoked by default).
 #link all compiled source and resource objects to produce final exe in
 #output dir
-all: $(OUTDIR) $(SRCOBJS) $(RESOBJS)
-	 $(CC) -o $(OUTDIR)/$(EXENAME) $(SRCOBJS) $(RESOBJS) $(LIBS)
+all: $(OUTDIR) $(SRCOBJS)
+	 $(CC) -o $(OUTDIR)/$(EXENAME) $(SRCOBJS) $(LIBS)
 
 #create the output directory
 $(OUTDIR):
@@ -91,14 +84,10 @@ $(OUTDIR):
 #compile all source files in src dir to object (o) files in output dir
 $(OUTDIR)/%$(OBJEXT):$(SRCDIR)/%$(SRCEXT)
 	$(CC) $(CPPFLAGS) $< -o $@
-
-#compile all resource files in res dir to object (o) files in output dir
-$(OUTDIR)/%$(OBJEXT):$(RESDIR)/%$(RESEXT)
-	$(WNDRES) --include-dir $(RESDIR) $< -o $@
 #===========================================================================
 #cleanup
 clean:
-	-rm $(SRCOBJS) $(RESOBJS) $(OUTDIR)/$(EXENAME)
+	-rm $(SRCOBJS)
 	
 run:
 	$(OUTDIR)/$(EXENAME)

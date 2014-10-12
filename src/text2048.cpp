@@ -197,8 +197,8 @@ void calculate(int board[][4], bool merge[][4], char direction, int* gameState)
 						if (k != 3 && board[j][k] != 0)
 						{
 							if (board[j][k] == board[j][k + 1]
-								&& merge[j][k] == false
-								&& merge[j][k + 1] == false)
+									&& merge[j][k] == false
+									&& merge[j][k + 1] == false)
 							{
 								board[j][k + 1] *= 2;
 								board[j][k] = 0;
@@ -220,8 +220,8 @@ void calculate(int board[][4], bool merge[][4], char direction, int* gameState)
 						if (j != 3 && board[j][k] != 0)
 						{
 							if (board[j][k] == board[j + 1][k]
-								&& merge[j][k] == false
-								&& merge[j + 1][k] == false)
+									&& merge[j][k] == false
+									&& merge[j + 1][k] == false)
 							{
 								board[j + 1][k] *= 2;
 								board[j][k] = 0;
