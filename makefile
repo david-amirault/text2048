@@ -53,7 +53,7 @@ OUTDIR   = bin
 SRCDIR   = src
 #---------------------------------------------------------------------------
 #name the final exe
-EXENAME  = application
+EXENAME  = $(notdir $(CURDIR))
 #and the source extensions
 SRCEXT   = .cpp
 OBJEXT   = .o
@@ -63,7 +63,7 @@ SRC     := $(wildcard $(SRCDIR)/*$(SRCEXT))
 SRCOBJS := $(patsubst $(SRCDIR)/%,$(OUTDIR)/%,$(subst $(SRCEXT),$(OBJEXT),$(SRC)))
 #---------------------------------------------------------------------------
 #finally set various flags for compiling, linking or building
-CPPFLAGS = -Wall -c -g
+CPPFLAGS = -Wall -c -g -std=c++11
 #Note that -Wl,--subsystem,windows is synonymous with -mwindows; -Wl is used
 #to ensure that linker switches are passed to the linker when it (ld) is
 #invoked by another program, eg gcc. Both have the effect of building a 
@@ -82,7 +82,7 @@ $(OUTDIR):
 	@-mkdir $(OUTDIR)
 
 #compile all source files in src dir to object (o) files in output dir
-$(OUTDIR)/%$(OBJEXT):$(SRCDIR)/%$(SRCEXT)
+$(OUTDIR)/%$(OBJEXT): $(SRCDIR)/%$(SRCEXT)
 	$(CC) $(CPPFLAGS) $< -o $@
 #===========================================================================
 #cleanup
