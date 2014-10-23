@@ -1,16 +1,16 @@
 /*
 ==================================================
-        Filename:   text2048.cpp
+    Filename:   text2048.cpp
 
-     Description:   Text-based 2048 game. Please
-                    set your terminal to 80 x 25.
+ Description:   Text-based 2048 game. Please
+                set your terminal to 80 x 25.
 
-         Version:   1.0
-         Created:   2014-10-02
-        Revision:   none
-        Compiler:   gcc
+     Version:   1.0
+     Created:   2014-10-02
+    Revision:   none
+    Compiler:   gcc
 
-          Author:   David Amirault
+      Author:   David Amirault
 ==================================================
 */
 
