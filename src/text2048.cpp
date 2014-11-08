@@ -3,7 +3,7 @@
     Filename:   text2048.cpp
 
  Description:   Text-based 2048 game. Please
-                set your terminal to 80 x 25.
+                set your terminal to 80 x 24.
 
      Version:   1.0
      Created:   2014-10-02
@@ -64,7 +64,7 @@ void displayBoard(int board[][4], int gameState)
              << "                     |________|________|________|________|" << endl;
     }
     if (gameState == 1)
-        cout << "\n                     Enter direction (w, a, s, d): ";
+        cout << "                     Enter direction (w, a, s, d): ";
 }
 
 void addNum(int board[][4], int* gameState)
