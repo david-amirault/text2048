@@ -1,6 +1,6 @@
 #===========================================================================
 #
-#  Description:  
+#  Description:
 #
 #    Makefile for building applications with Cygwin.
 #
@@ -12,7 +12,7 @@
 #    modify it under the terms of the GNU General Public License
 #    as published by the Free Software Foundation; either version 2
 #    of the License, or (at your option) any later version.
-#  
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -24,14 +24,14 @@
 #    Ken Fitlike. www.foosyerdoos.org.uk
 #
 #===========================================================================
-# Use of gcc with *.cpp files implicitly causes c++ compilation - but not 
+# Use of gcc with *.cpp files implicitly causes c++ compilation - but not
 # always. Use of g++ ensures explicit c++ compilation.
 # Define all rules with a <TAB> character and NOT spaces.
 #
 # This makefile automatically finds all source files based on file extension
 # in the source subdirectory and outputs compiled object (*.o) to the
 # release subdirectory.
-# The same process is performed to convert resource scripts (*.rc) to 
+# The same process is performed to convert resource scripts (*.rc) to
 # resource objects (*.res). The objects, source and resource, are then
 # linked into the final executable.
 #
@@ -66,11 +66,11 @@ SRCOBJS := $(patsubst $(SRCDIR)/%,$(OUTDIR)/%,$(subst $(SRCEXT),$(OBJEXT),$(SRC)
 CPPFLAGS = -Wall -c -g -std=c++11
 #Note that -Wl,--subsystem,windows is synonymous with -mwindows; -Wl is used
 #to ensure that linker switches are passed to the linker when it (ld) is
-#invoked by another program, eg gcc. Both have the effect of building a 
+#invoked by another program, eg gcc. Both have the effect of building a
 #windows app ie. no console window.
-LIBS     = 
+LIBS     =
 #---------------------------------------------------------------------------
-#main rule to compile the whole program ('all' - the first rule - is 
+#main rule to compile the whole program ('all' - the first rule - is
 #called/invoked by default).
 #link all compiled source and resource objects to produce final exe in
 #output dir
@@ -88,7 +88,7 @@ $(OUTDIR)/%$(OBJEXT): $(SRCDIR)/%$(SRCEXT)
 #cleanup
 clean:
 	-rm $(SRCOBJS)
-	
+
 run:
 	$(OUTDIR)/$(EXENAME)
 #===========================================================================
