@@ -75,22 +75,22 @@ LIBS     =
 #link all compiled source and resource objects to produce final exe in
 #output dir
 all: $(OUTDIR) $(SRCOBJS)
-	 $(CC) -o $(OUTDIR)/$(EXENAME) $(SRCOBJS) $(LIBS)
+$(CC) -o $(OUTDIR)/$(EXENAME) $(SRCOBJS) $(LIBS)
 
 #create the output directory
 $(OUTDIR):
-	@-mkdir $(OUTDIR)
+@-mkdir $(OUTDIR)
 
 #compile all source files in src dir to object (o) files in output dir
 $(OUTDIR)/%$(OBJEXT): $(SRCDIR)/%$(SRCEXT)
-	$(CC) $(CPPFLAGS) $< -o $@
+$(CC) $(CPPFLAGS) $< -o $@
 #===========================================================================
 #cleanup
 clean:
-	-rm $(SRCOBJS)
+-rm $(SRCOBJS)
 
 run:
-	$(OUTDIR)/$(EXENAME)
+$(OUTDIR)/$(EXENAME)
 #===========================================================================
 .PHONY: all clean run
 #===========================================================================
